@@ -29,7 +29,7 @@ def index():
         <!DOCTYPE html>
         <html>
         <head>
-            <title>Your Website Title</title>
+            <title>wallahi im 400kg</title>
             <style>
                 body { background-color: white; }
             </style>
